@@ -38,7 +38,7 @@ The result below is a comparison of volcano detection (binary classification) wi
 
 ![alt text](https://github.com/xpada001/volcano_CNN/blob/main/volcano_detection_result.png?raw=true)
 
-## Uncertainty Prediction
+### Uncertainty Prediction
 
 To predict the uncertainty of volcano detection, we used 4 types of uncertainty plus "no volcanoes" as the 5th label. Below is the result:
 
@@ -47,7 +47,7 @@ To predict the uncertainty of volcano detection, we used 4 types of uncertainty 
 Our model gives high accuracy but poor f1-score in the classes of certainty. Overall, assigning class weights gives slightly better result.
 
 
-## Number of Volcanoes Prediction
+### Number of Volcanoes Prediction
 
 The number of volcanoes in an image is also of interest. We trained our model with the number of volcanoes (including zero volcanoes) as labels and obtain 94.95% accuracy in
 the test set. However, for the images with volcanoes only, i.e. we excluded the case of zero volcanoes, the accuracy is about 76%. Furthermore, we also tried different models to make predictions (i.e. Support Vector Machine, Random Forest, XGBoost). Our classification model has already extracted a lot of representative features of the surface of Venus. So we extracted the output before the very last dense layer and take each row as the features of an image. Then we fitted the features to the classifiers mentioned earlier. The results are shown below:
@@ -58,7 +58,7 @@ the test set. However, for the images with volcanoes only, i.e. we excluded the 
 These three classifiers yield higher accuracy than the CNN model. Hence it is suggested to combine CNN and one of the three classifiers above for the number of volcanoes prediction.
 
 
-## Radius of Volcanoes
+### Radius of Volcanoes
 We found that estimating the radius of volcanoes is the most difficult task. First, we conducted regression to predict radius with various regressors, such as Gradient Boost and multilayer perceptron model. We tried to use the original images or the output before the last dense layer of the binary classification model as the input
 to the regressors, but we did not obtain good results. The models overfit the training data severely. Parameter tuning still gives us no satisfactory results. Then, we relaxed the regression problem to a classification problem – dividing the data into 4 groups by thresholding the radius. However, such relaxation still does not give a desired solution as expected. More investigations would be needed to find a good model for the radius prediction.
 
